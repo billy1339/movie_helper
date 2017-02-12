@@ -1,1 +1,27 @@
-<p>{{tagline}}</p>
+<div ng-controller="SearchCtrl as vm">
+	    <form name="searchForm" ng-submit="vm.getSearchReslts(vm.searchTerm)">
+            <div class="">
+                <div class="">
+                    <div class="form-search">
+                        <i class="icon-search"></i>
+                        <input type="text" style="width:50%;" ng-model="vm.searchTerm" ng-change="vm.getSearchTypeAhead(vm.searchTerm)" class=""
+                            placeholder="Search..." no-dirty-check="">
+                    </div>
+                </div>
+                <br><br>
+                <table>
+                    <tr ng-repeat="result in vm.searchResults">
+                        <td class=''><b>{{result.Name}}</b></td>
+                    </tr>
+                </table>
+                <div class="">
+                    <div class="">
+                    <button type="submit" class="btn btn-primary" ng-disabled="!searchForm.$valid">
+                        <localize key="buttons_save">Search</localize>
+                    </button>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
+

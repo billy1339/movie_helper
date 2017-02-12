@@ -1,1 +1,1 @@
-angular.module('SearchApp', ['ngRoute', 'appRoutes', 'SearchCtrl']);
+angular.module('SearchApp', ['ngRoute', 'appRoutes', 'SearchCtrl', 'SearchSvc']);

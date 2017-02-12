@@ -18,7 +18,7 @@ del = require('del');
 
 //scripts task
 gulp.task('scripts', function() {
-  return gulp.src(['./scripts/*.js', './scripts/controllers/*.js', './scripts/directives/*.js', './scripts/factories/*.js', './scripts/filters/*.js'])
+  return gulp.src(['./scripts/*.js', './scripts/controllers/*.js', './scripts/services/*.js', './scripts/factories/*.js', './scripts/filters/*.js'])
     .pipe(gulp.dest('./dist/scripts/'))
     // .pipe(uglify())
     // .pipe(rename({

@@ -13,11 +13,12 @@
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
 
+    require('./Server/routes')(app);
     // listen (start app with node server.js) ======================================
     
-	app.get('*', function(req, res) {
-        res.sendFile('dist/index.html', {root: __dirname}); // load the single view file (angular will handle the page changes on the front-end)
-	});
+	// app.get('*', function(req, res) {
+ //        res.sendFile('dist/index.html', {root: __dirname}); // load the single view file (angular will handle the page changes on the front-end)
+	// });
 
     app.listen(8080);
     console.log("App listening on port 8080");
