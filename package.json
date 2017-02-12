@@ -1,5 +1,5 @@
 {
-  "name": "Movie Helper",
+  "name": "Movie_Helper",
   "version": "1.0.0",
   "description": "Search for movies",
   "main": "gulpfile.js",
@@ -8,17 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/billy1339/movie_helper"
   },
   "author": "Billy Sarge",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/billy1339/movie_helper#README"
   },
   "homepage": "",
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.13.4",
+    "guidebox": "^1.1.1",
     "method-override": "^2.1.3",
     "morgan": "^1.1.1",
     "path": "^0.12.7",
