@@ -1,27 +1,83 @@
 <div ng-controller="SearchCtrl as vm">
-	    <form name="searchForm" ng-submit="vm.getSearchReslts(vm.searchTerm)">
-            <div class="">
-                <div class="">
-                    <div class="form-search">
-                        <i class="icon-search"></i>
-                        <input type="text" style="width:50%;" ng-model="vm.searchTerm" ng-change="vm.getSearchTypeAhead(vm.searchTerm)" class=""
-                            placeholder="Search..." no-dirty-check="">
+	    <form name="searchForm" ng-submit="vm.getSearchReslts(vm.searchTerm, vm.isMovie)">
+            <div class="container">
+                <div class="row">
+                	<div class="col-xs-12" style="margin-top:50px;">
+	                    <div class="form-search">
+	                        <label for="searchInput">What would you like to search for:</label>
+	                        <input type="text" style="width:50%;" ng-model="vm.searchTerm" ng-change="vm.getSearchTypeAhead(vm.searchTerm)" class="form-control"
+	                            placeholder="Search..." no-dirty-check="" id="searchInput">
+	                    </div>
                     </div>
+                    <div class="col-xs-12">
+                      <label for="sel1">Movie or TV Show?:</label>
+					  <select class="form-control" id="sel1" style="width:50%;" ng-model="vm.isMovie">
+					    <option value="true">Movie</option>
+					    <option value="false">TV Show</option>
+					  </select>
+				  	</div>
                 </div>
                 <br><br>
-                <table>
-                    <tr ng-repeat="result in vm.searchResults">
-                        <td class=''><b>{{result.Name}}</b></td>
-                    </tr>
-                </table>
+             
                 <div class="">
                     <div class="">
                     <button type="submit" class="btn btn-primary" ng-disabled="!searchForm.$valid">
-                        <localize key="buttons_save">Search</localize>
+                        <localize key="buttons_save"> 
+                        	<span ng-show="vm.searchButtonText == 'Loading...'"><i class="fa-li fa fa-spinner fa-spin"></i></span>
+        					{{ vm.searchButtonText }}
+        				</localize>
                     </button>
                     </div>
                 </div>
             </div>
     </form>
+    <div class='container'>
+    	<div class='row'>
+    		 <div class='col-xs-12'>
+    		 	   <table>
+				        <tr ng-repeat="result in vm.searchResults">
+				            <td><img ng-src="{{result.artwork_208x117}}" ng-show="{{result.artwork_208x117 != undefined}}" ng-click="vm.searchById(result.id)"/>
+							<img ng-src="{{result.poster_120x171}}" ng-show="result.poster_120x171 != undefined" ng-click="vm.searchById(result.id)"/>
+				            </td>
+				            <td class=''><b>{{result.title}}</b></td>
+				        </tr>
+    				</table>
+    		</div>
+    	</div>
+    </div>
+    <div class='container'>
+    	<div class='row'>
+    		<div class='col-xs-12'>
+    			<div ng-show="vm.pickedMovieOrShow.movie_img != undefined">
+    				<div>
+						<h1> {{vm.pickedMovieOrShow.title}} </h1>
+						<img ng-src="{{vm.pickedMovieOrShow.movie_img}}"/>
+						<p> Subscriptsion sources </p>
+						<ul>
+							<li ng-repeat="item in vm.pickedMovieOrShow.subscription_sources">
+								{{item.display_name}}
+							</li>
+						</ul>
+						<p> Paid sources </p>
+						<ul>
+							<li ng-repeat="item in vm.pickedMovieOrShow.purchase_sources">
+								{{item.display_name}}
+							</li>
+						</ul>
+
+    				</div>
+    			</div>
+    			<div ng-show="vm.pickedMovieOrShow.tv_img != undefined">
+    				<div>
+    					<h1> {{vm.pickedMovieOrShow.title}} </h1>
+    					<img ng-src="{{vm.pickedMovieOrShow.tv_img}}"/>
+    					<p> This show is from the network {{vm.pickedMovieOrShow.network}} </p>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
 </div>
+
+
 
